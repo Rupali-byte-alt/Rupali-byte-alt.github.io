@@ -3,169 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rupali Ganesh - AI Developer Portfolio</title>
+    <title>Rupali Ganesh | AI Developer</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <h1 class="logo">RG</h1>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Hi, I'm Rupali Ganesh</h1>
-            <p class="tagline">AI Developer | Flutter Engineer | Computer Vision Specialist</p>
-            <p class="location"><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn primary">View My Work</a>
-                <a href="#contact" class="btn secondary">Get In Touch</a>
+    <!-- Background Animation Elements -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container">
+        <!-- Header / Profile Widget -->
+        <header class="widget profile-widget">
+            <div class="profile-img-container">
+                <!-- Replace src with your photo URL or keep placeholder -->
+                <img src="https://ui-avatars.com/api/?name=Rupali+Ganesh&background=random&size=200" alt="Rupali Ganesh" class="profile-pic">
+                <div class="status-indicator"></div>
             </div>
-        </div>
-    </section>
+            <h1>Rupali Ganesh</h1>
+            <p class="role">AI Developer & Flutter Engineer</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/your-profile" target="_blank" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Rupali-byte-alt" target="_blank" class="social-btn github"><i class="fab fa-github"></i></a>
+                <a href="mailto:your-email@example.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </header>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>I'm a passionate developer specializing in AI-powered mobile applications and computer vision solutions. With expertise in Flutter, Python, and deep learning frameworks, I build innovative tools that solve real-world problems.</p>
-            <p>Currently focused on agricultural technology, developing crop disease detection systems using YOLO models and deploying them on mobile platforms for farmers.</p>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>Featured Projects</h2>
-            
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>Krishilens - Crop Disease Detection App</h3>
-                    <p class="project-tech">Flutter • YOLOv8 • TensorFlow Lite • FastAPI</p>
-                    <p>A comprehensive mobile application for real-time crop disease detection using AI. Features include:</p>
-                    <ul>
-                        <li>Real-time image analysis using YOLO object detection models</li>
-                        <li>Backend server integration with FastAPI/Flask for AI inference</li>
-                        <li>Offline capability with TensorFlow Lite models</li>
-                        <li>Disease history tracking and management</li>
-                        <li>Support for multiple crop types and disease categories</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="#" class="btn small"><i class="fab fa-github"></i> View Code</a>
-                        <a href="#" class="btn small"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                    </div>
+        <!-- Education & CGPA Widget -->
+        <section class="widget education-widget">
+            <div class="widget-header">
+                <i class="fas fa-graduation-cap icon-bg"></i>
+                <h2>Education</h2>
+            </div>
+            <div class="edu-card">
+                <h3>B.E. Computer Science</h3>
+                <p class="college">Your College Name</p>
+                <div class="cgpa-badge">
+                    <span class="label">CGPA</span>
+                    <span class="value">8.5/10</span> <!-- UPDATE YOUR CGPA HERE -->
                 </div>
+                <p class="year">2022 - 2026</p>
             </div>
+        </section>
 
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>AI Model Training Pipeline</h3>
-                    <p class="project-tech">Python • Google Colab • YOLO</p>
-                    <p>Developed automated training pipelines for plant disease datasets, optimizing model performance for mobile deployment.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn small"><i class="fab fa-github"></i> View Code</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>Backend AI Inference Server</h3>
-                    <p class="project-tech">FastAPI • Flask • Python • Docker</p>
-                    <p>Built scalable backend services for real-time AI inference, ensuring seamless integration between mobile apps and AI models.</p>
-                    <div class="project-links">
-                        <a href="#" class="btn small"><i class="fab fa-github"></i> View Code</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2>Technical Skills</h2>
+        <!-- Tech Stack Widget (Scrolling) -->
+        <section class="widget skills-widget">
+            <h3>Tech Stack</h3>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-mobile-alt"></i> Mobile Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">Android</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">YOLO</span>
-                        <span class="skill-tag">TensorFlow Lite</span>
-                        <span class="skill-tag">Computer Vision</span>
-                        <span class="skill-tag">Python</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-server"></i> Backend Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">REST APIs</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">Google Colab</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Gradle</span>
-                    </div>
-                </div>
+                <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+                <div class="skill-item"><i class="fas fa-mobile-alt"></i> Flutter</div>
+                <div class="skill-item"><i class="fas fa-brain"></i> YOLO/AI</div>
+                <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
+                <div class="skill-item"><i class="fas fa-server"></i> FastAPI</div>
+                <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+        <!-- Projects Widget (Large) -->
+        <section class="widget projects-widget">
+            <div class="widget-header">
+                <i class="fas fa-code-branch icon-bg"></i>
+                <h2>Featured Projects</h2>
+            </div>
             
-            <div class="contact-links">
-                <a href="mailto:your-email@example.com" class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email Me</span>
-                </a>
-                <a href="https://github.com/rupali-ganesh" class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://linkedin.com/in/your-profile" class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                </a>
+            <div class="project-card main-project">
+                <div class="project-content">
+                    <span class="tag">Flagship Project</span>
+                    <h3>Krishilens</h3>
+                    <p>AI-powered crop disease detection app using YOLOv8 & Flutter. Real-time inference on mobile devices.</p>
+                    <div class="project-tech">
+                        <span>Flutter</span><span>YOLO</span><span>FastAPI</span>
+                    </div>
+                    <a href="#" class="btn-view">View Case Study <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="project-visual gradient-1"></div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
+            <div class="project-list">
+                <div class="mini-project">
+                    <h4>Plant Disease CNN</h4>
+                    <p>TensorFlow model for leaf analysis</p>
+                </div>
+                <div class="mini-project">
+                    <h4>Agri-Bot API</h4>
+                    <p>Backend service for farm automation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Widget -->
+        <section class="widget certs-widget">
+            <h3>Certifications</h3>
+            <ul class="cert-list">
+                <li>
+                    <i class="fas fa-certificate gold"></i>
+                    <div>
+                        <strong>Google AI Essentials</strong>
+                        <span>Coursera • 2025</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-certificate blue"></i>
+                    <div>
+                        <strong>Flutter Development</strong>
+                        <span>Udemy • 2024</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-certificate purple"></i>
+                    <div>
+                        <strong>Python Data Structures</strong>
+                        <span>HackerRank • 2024</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Rupali Ganesh. Built with ❤️</p>
-        </div>
+        <p>Designed & Built by Rupali Ganesh © 2026</p>
     </footer>
+
 </body>
 </html>
