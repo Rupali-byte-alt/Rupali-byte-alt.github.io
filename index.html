@@ -3,131 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rupali Ganesh | AI Developer</title>
-    <!-- Font Awesome for Icons -->
+    <title>Rupali Ganesh | AI Innovator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- FANCY UI VARIABLES --- */
+        :root {
+            --bg: #030014;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #7000ff;   /* Electric Violet */
+            --secondary: #00d4ff; /* Cyan Neon */
+            --accent: #ff0055;    /* Hot Pink */
+            --text: #ffffff;
+            --muted: #a1a1aa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- ANIMATED BACKGROUND --- */
+        .ambient-light {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 40%),
+                        radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.15), transparent 40%);
+            animation: pulseLight 10s infinite alternate;
+        }
+        @keyframes pulseLight { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
+
+        /* --- INTRO LANDING PAGE --- */
+        #intro-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; background: var(--bg);
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        #intro-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        .intro-title {
+            font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800; text-align: center; line-height: 1.1;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 0.5s;
+        }
+        .intro-sub {
+            font-size: 1.2rem; color: var(--muted); margin-top: 20px; letter-spacing: 2px;
+            opacity: 0; animation: fadeUp 1s forwards 1s;
+        }
+        .enter-btn {
+            margin-top: 40px; padding: 15px 40px; border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.05); color: white; border-radius: 50px;
+            cursor: pointer; font-family: 'Space Grotesk'; font-size: 1rem; letter-spacing: 1px;
+            transition: 0.3s; opacity: 0; animation: fadeUp 1s forwards 1.5s;
+        }
+        .enter-btn:hover { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 30px rgba(112,0,255,0.5); }
+
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- MAIN CONTENT LAYOUT --- */
+        .main-wrapper { max-width: 1300px; margin: 0 auto; padding: 100px 20px; opacity: 0; transition: opacity 1s ease 0.5s; }
+        .main-wrapper.visible { opacity: 1; }
+
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+        }
+
+        /* --- WIDGET STYLES --- */
+        .widget {
+            background: var(--card-bg); backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); border-radius: 24px;
+            padding: 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
+        }
+        .widget:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        
+        /* Grid Spans */
+        .w-profile { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(145deg, rgba(112,0,255,0.1), rgba(0,0,0,0)); }
+        .w-patent { grid-column: span 2; background: linear-gradient(145deg, rgba(0,212,255,0.05), rgba(0,0,0,0)); border-color: rgba(0,212,255,0.2); }
+        .w-stats { grid-column: span 1; }
+        .w-skills { grid-column: span 1; }
+        .w-projects { grid-column: span 4; }
+        .w-activity { grid-column: span 2; }
+        .w-contact { grid-column: span 2; }
+
+        /* Typography & Elements */
+        h2 { font-family: 'Space Grotesk'; font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        h2 i { color: var(--secondary); }
+        
+        .avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; margin-bottom: 20px; box-shadow: 0 0 30px rgba(112,0,255,0.3); }
+        .role-badge { background: rgba(112,0,255,0.2); color: #d8b4fe; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; display: inline-block; }
+        
+        /* Patent Specific */
+        .patent-number { font-family: 'Space Grotesk'; font-size: 3rem; font-weight: 700; color: var(--secondary); margin: 10px 0; text-shadow: 0 0 20px rgba(0,212,255,0.4); }
+        .patent-status { display: inline-flex; align-items: center; gap: 5px; background: rgba(0,255,136,0.1); color: #00ff88; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; margin-top: 10px; }
+
+        /* Stats & Skills */
+        .stat-val { font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { background: rgba(255,255,255,0.05); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .tag:hover { background: var(--primary); border-color: var(--primary); }
+
+        /* Project Folders */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .folder-card { 
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.3s;
+        }
+        .folder-card:hover { background: rgba(255,255,255,0.06); border-color: var(--accent); }
+        .folder-icon { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
+        
+        /* Activity List */
+        .act-item { display: flex; gap: 15px; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .act-icon-box { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--secondary); flex-shrink: 0; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .w-profile, .w-patent, .w-projects, .w-activity, .w-contact { grid-column: span 2; }
+        }
+        @media (max-width: 768px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .w-profile, .w-patent, .w-stats, .w-skills, .w-projects, .w-activity, .w-contact { grid-column: span 1; }
+            .intro-title { font-size: 3rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Background Animation Elements -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+    <!-- Ambient Background -->
+    <div class="ambient-light"></div>
 
-    <div class="container">
-        <!-- Header / Profile Widget -->
-        <header class="widget profile-widget">
-            <div class="profile-img-container">
-                <!-- Replace src with your photo URL or keep placeholder -->
-                <img src="https://ui-avatars.com/api/?name=Rupali+Ganesh&background=random&size=200" alt="Rupali Ganesh" class="profile-pic">
-                <div class="status-indicator"></div>
-            </div>
-            <h1>Rupali Ganesh</h1>
-            <p class="role">AI Developer & Flutter Engineer</p>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/your-profile" target="_blank" class="social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/Rupali-byte-alt" target="_blank" class="social-btn github"><i class="fab fa-github"></i></a>
-                <a href="mailto:your-email@example.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
-            </div>
-        </header>
-
-        <!-- Education & CGPA Widget -->
-        <section class="widget education-widget">
-            <div class="widget-header">
-                <i class="fas fa-graduation-cap icon-bg"></i>
-                <h2>Education</h2>
-            </div>
-            <div class="edu-card">
-                <h3>B.E. Computer Science</h3>
-                <p class="college">Your College Name</p>
-                <div class="cgpa-badge">
-                    <span class="label">CGPA</span>
-                    <span class="value">8.5/10</span> <!-- UPDATE YOUR CGPA HERE -->
-                </div>
-                <p class="year">2022 - 2026</p>
-            </div>
-        </section>
-
-        <!-- Tech Stack Widget (Scrolling) -->
-        <section class="widget skills-widget">
-            <h3>Tech Stack</h3>
-            <div class="skills-grid">
-                <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-                <div class="skill-item"><i class="fas fa-mobile-alt"></i> Flutter</div>
-                <div class="skill-item"><i class="fas fa-brain"></i> YOLO/AI</div>
-                <div class="skill-item"><i class="fab fa-docker"></i> Docker</div>
-                <div class="skill-item"><i class="fas fa-server"></i> FastAPI</div>
-                <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
-            </div>
-        </section>
-
-        <!-- Projects Widget (Large) -->
-        <section class="widget projects-widget">
-            <div class="widget-header">
-                <i class="fas fa-code-branch icon-bg"></i>
-                <h2>Featured Projects</h2>
-            </div>
-            
-            <div class="project-card main-project">
-                <div class="project-content">
-                    <span class="tag">Flagship Project</span>
-                    <h3>Krishilens</h3>
-                    <p>AI-powered crop disease detection app using YOLOv8 & Flutter. Real-time inference on mobile devices.</p>
-                    <div class="project-tech">
-                        <span>Flutter</span><span>YOLO</span><span>FastAPI</span>
-                    </div>
-                    <a href="#" class="btn-view">View Case Study <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="project-visual gradient-1"></div>
-            </div>
-
-            <div class="project-list">
-                <div class="mini-project">
-                    <h4>Plant Disease CNN</h4>
-                    <p>TensorFlow model for leaf analysis</p>
-                </div>
-                <div class="mini-project">
-                    <h4>Agri-Bot API</h4>
-                    <p>Backend service for farm automation</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certificates Widget -->
-        <section class="widget certs-widget">
-            <h3>Certifications</h3>
-            <ul class="cert-list">
-                <li>
-                    <i class="fas fa-certificate gold"></i>
-                    <div>
-                        <strong>Google AI Essentials</strong>
-                        <span>Coursera • 2025</span>
-                    </div>
-                </li>
-                <li>
-                    <i class="fas fa-certificate blue"></i>
-                    <div>
-                        <strong>Flutter Development</strong>
-                        <span>Udemy • 2024</span>
-                    </div>
-                </li>
-                <li>
-                    <i class="fas fa-certificate purple"></i>
-                    <div>
-                        <strong>Python Data Structures</strong>
-                        <span>HackerRank • 2024</span>
-                    </div>
-                </li>
-            </ul>
-        </section>
-
+    <!-- INTRO SCREEN -->
+    <div id="intro-screen">
+        <h1 class="intro-title">RUPALI GANESH</h1>
+        <p class="intro-sub">AI DEVELOPER • INNOVATOR • RESEARCHER</p>
+        <button class="enter-btn" onclick="enterSite()">ENTER PORTFOLIO</button>
     </div>
 
-    <footer>
-        <p>Designed & Built by Rupali Ganesh © 2026</p>
-    </footer>
+    <!-- MAIN CONTENT -->
+    <div class="main-wrapper" id="main-content">
+        <div class="bento-grid">
+            
+            <!-- 1. Profile Widget -->
+            <div class="widget w-profile" id="profile-widget"></div>
 
+            <!-- 2. PATENT WIDGET (Dedicated Column) -->
+            <div class="widget w-patent" id="patent-widget">
+                <h2><i class="fas fa-file-contract"></i> Granted Patent</h2>
+                <div id="patent-content"></div>
+            </div>
+
+            <!-- 3. Stats Widget -->
+            <div class="widget w-stats" id="stats-widget">
+                <h2><i class="fas fa-chart-pie"></i> Metrics</h2>
+                <div id="stats-content"></div>
+            </div>
+
+            <!-- 4. Skills Widget -->
+            <div class="widget w-skills">
+                <h2><i class="fas fa-microchip"></i> Arsenal</h2>
+                <div class="tags" id="skills-content"></div>
+            </div>
+
+            <!-- 5. Projects Folder Widget -->
+            <div class="widget w-projects">
+                <h2><i class="fas fa-layer-group"></i> Project Archives</h2>
+                <div class="project-grid" id="projects-content"></div>
+            </div>
+
+            <!-- 6. Activities (Hackathons/Courses) -->
+            <div class="widget w-activity">
+                <h2><i class="fas fa-bolt"></i> Achievements</h2>
+                <div id="activity-content"></div>
+            </div>
+
+            <!-- 7. Contact Widget -->
+            <div class="widget w-contact">
+                <h2><i class="fas fa-paper-plane"></i> Connect</h2>
+                <div class="tags" id="contact-content" style="justify-content: center;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!--          DATA CONFIGURATION SECTION        -->
+    <!-- ========================================== -->
+    <script>
+        // EDIT YOUR DETAILS HERE
+        const DATA = {
+            profile: {
+                name: "Rupali Ganesh",
+                role: "AI Developer & Researcher",
+                bio: "Transforming agriculture through computer vision. Specializing in YOLO architectures, mobile AI deployment, and scalable backend systems.",
+                avatar: "https://ui-avatars.com/api/?name=Rupali+Ganesh&background=7000ff&color=fff&size=256", 
+                socials: [
+                    { icon: "fab fa-linkedin-in", link: "https://linkedin.com/in/your-profile" },
+                    { icon: "fab fa-github", link: "https://github.com/Rupali-byte-alt" },
+                    { icon: "fas fa-envelope", link: "mailto:your@email.com" }
+                ]
+            },
+            patent: {
+                number: "US-2026-8842", // Your Patent Number
+                title: "Real-time Crop Pathogen Detection via Edge-AI",
+                desc: "A novel method for on-device inference of plant diseases using quantized neural networks.",
+                status: "Granted", // or "Pending"
+                date: "May 2026"
+            },
+            stats: [
+                { label: "CGPA", value: "8.5" },
+                { label: "HackerRank", value: "5★" },
+                { label: "Projects", value: "12+" }
+            ],
+            skills: ["Flutter", "Python", "YOLOv8", "TensorFlow Lite", "FastAPI", "Docker", "Git", "OpenCV"],
+            projects: [
+                { title: "Krishilens", desc: "Flagship crop disease detection app with offline TFLite support.", tech: ["Flutter", "AI"] },
+                { title: "Agri-Backend", desc: "Scalable FastAPI server handling 10k+ daily inference requests.", tech: ["Python", "AWS"] },
+                { title: "Leaf-CNN", desc: "Custom CNN architecture achieving 98% accuracy on custom dataset.", tech: ["Keras", "CV"] },
+                { title: "Farm-IoT", desc: "Sensor data visualization dashboard for smart farming.", tech: ["React", "MQTT"] }
+            ],
+            activities: [
+                { type: "hackathon", title: "Smart India Hackathon", sub: "National Finalist • 2025" },
+                { type: "course", title: "Deep Learning Specialization", sub: "Andrew Ng / Coursera" },
+                { type: "hackathon", title: "Hacktoberfest", sub: "Top 10% Contributor" },
+                { type: "course", title: "Advanced Flutter & Dart", sub: "Udemy • 2024" }
+            ]
+        };
+
+        // --- RENDER LOGIC (DO NOT EDIT BELOW) ---
+        
+        // Intro Animation
+        function enterSite() {
+            document.getElementById('intro-screen').classList.add('hidden');
+            document.getElementById('main-content').classList.add('visible');
+        }
+
+        // Render Profile
+        const p = DATA.profile;
+        document.getElementById('profile-widget').innerHTML = `
+            <img src="${p.avatar}" class="avatar" alt="Profile">
+            <span class="role-badge">${p.role}</span>
+            <h1 style="font-family:'Space Grotesk'; font-size:2.5rem; margin-bottom:10px;">${p.name}</h1>
+            <p style="color:var(--muted); max-width:400px; line-height:1.6;">${p.bio}</p>
+            <div class="tags" style="margin-top:25px; justify-content:center;">
+                ${p.socials.map(s => `<a href="${s.link}" target="_blank" class="tag"><i class="${s.icon}"></i></a>`).join('')}
+            </div>
+        `;
+
+        // Render Patent
+        const pat = DATA.patent;
+        document.getElementById('patent-content').innerHTML = `
+            <div style="text-align:center; padding:20px 0;">
+                <div class="patent-number">${pat.number}</div>
+                <h3 style="font-size:1.3rem; margin-bottom:10px;">${pat.title}</h3>
+                <p style="color:var(--muted); font-size:0.9rem; margin-bottom:15px;">${pat.desc}</p>
+                <div class="patent-status"><i class="fas fa-check-circle"></i> ${pat.status} • ${pat.date}</div>
+            </div>
+        `;
+
+        // Render Stats
+        document.getElementById('stats-content').innerHTML = DATA.stats.map(s => `
+            <div style="text-align:center; margin-bottom:20px;">
+                <div class="stat-val">${s.value}</div>
+                <div style="color:var(--muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:1px;">${s.label}</div>
+            </div>
+        `).join('');
+
+        // Render Skills
+        document.getElementById('skills-content').innerHTML = DATA.skills.map(s => `<span class="tag">${s}</span>`).join('');
+
+        // Render Projects
+        document.getElementById('projects-content').innerHTML = DATA.projects.map(proj => `
+            <div class="folder-card">
+                <i class="fas fa-folder-open folder-icon"></i>
+                <h3 style="margin-bottom:8px;">${proj.title}</h3>
+                <p style="color:var(--muted); font-size:0.85rem; margin-bottom:15px;">${proj.desc}</p>
+                <div class="tags">${proj.tech.map(t => `<span class="tag" style="font-size:0.7rem; padding:3px 8px;">${t}</span>`).join('')}</div>
+            </div>
+        `).join('');
+
+        // Render Activities
+        document.getElementById('activity-content').innerHTML = DATA.activities.map(a => `
+            <div class="act-item">
+                <div class="act-icon-box"><i class="${a.type === 'hackathon' ? 'fas fa-trophy' : 'fas fa-certificate'}"></i></div>
+                <div>
+                    <div style="font-weight:600; font-size:0.95rem;">${a.title}</div>
+                    <div style="color:var(--muted); font-size:0.8rem;">${a.sub}</div>
+                </div>
+            </div>
+        `).join('');
+
+        // Render Contact
+        document.getElementById('contact-content').innerHTML = `
+            <a href="mailto:${p.socials.find(s=>s.icon.includes('envelope'))?.link.replace('mailto:','') || ''}" class="tag" style="padding:10px 25px; font-size:1rem;"><i class="fas fa-envelope"></i> Email Me</a>
+            <a href="${p.socials.find(s=>s.icon.includes('linkedin'))?.link || '#'}" target="_blank" class="tag" style="padding:10px 25px; font-size:1rem;"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        `;
+    </script>
 </body>
 </html>
