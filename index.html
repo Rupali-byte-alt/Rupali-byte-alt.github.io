@@ -8,123 +8,86 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- FANCY UI VARIABLES --- */
         :root {
-            --bg: #030014;
-            --card-bg: rgba(255, 255, 255, 0.03);
+            --bg: #030014; --card-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
-            --primary: #7000ff;   /* Electric Violet */
-            --secondary: #00d4ff; /* Cyan Neon */
-            --accent: #ff0055;    /* Hot Pink */
-            --text: #ffffff;
-            --muted: #a1a1aa;
+            --primary: #7000ff; --secondary: #00d4ff; --accent: #ff0055;
+            --text: #ffffff; --muted: #a1a1aa;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
         
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* --- ANIMATED BACKGROUND --- */
-        .ambient-light {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+        .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background: radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 40%),
                         radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.15), transparent 40%);
-            animation: pulseLight 10s infinite alternate;
-        }
+            animation: pulseLight 10s infinite alternate; }
         @keyframes pulseLight { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
 
-        /* --- INTRO LANDING PAGE --- */
-        #intro-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        #intro-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 9999; background: var(--bg);
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
+            z-index: 9999; background: var(--bg); transition: opacity 0.8s ease, visibility 0.8s; }
         #intro-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         
-        .intro-title {
-            font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 6rem);
+        .intro-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 800; text-align: center; line-height: 1.1;
             background: linear-gradient(to right, #fff, var(--secondary));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 0.5s;
-        }
-        .intro-sub {
-            font-size: 1.2rem; color: var(--muted); margin-top: 20px; letter-spacing: 2px;
-            opacity: 0; animation: fadeUp 1s forwards 1s;
-        }
-        .enter-btn {
-            margin-top: 40px; padding: 15px 40px; border: 1px solid var(--glass-border);
+            opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 0.5s; }
+        .intro-sub { font-size: 1.2rem; color: var(--muted); margin-top: 20px; letter-spacing: 2px;
+            opacity: 0; animation: fadeUp 1s forwards 1s; }
+        .enter-btn { margin-top: 40px; padding: 15px 40px; border: 1px solid var(--glass-border);
             background: rgba(255,255,255,0.05); color: white; border-radius: 50px;
             cursor: pointer; font-family: 'Space Grotesk'; font-size: 1rem; letter-spacing: 1px;
-            transition: 0.3s; opacity: 0; animation: fadeUp 1s forwards 1.5s;
-        }
+            transition: 0.3s; opacity: 0; animation: fadeUp 1s forwards 1.5s; }
         .enter-btn:hover { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 30px rgba(112,0,255,0.5); }
-
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- MAIN CONTENT LAYOUT --- */
         .main-wrapper { max-width: 1300px; margin: 0 auto; padding: 100px 20px; opacity: 0; transition: opacity 1s ease 0.5s; }
         .main-wrapper.visible { opacity: 1; }
+        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
-        }
-
-        /* --- WIDGET STYLES --- */
-        .widget {
-            background: var(--card-bg); backdrop-filter: blur(20px);
+        .widget { background: var(--card-bg); backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); border-radius: 24px;
             padding: 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden;
-        }
+            position: relative; overflow: hidden; }
         .widget:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         
-        /* Grid Spans */
         .w-profile { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(145deg, rgba(112,0,255,0.1), rgba(0,0,0,0)); }
         .w-patent { grid-column: span 2; background: linear-gradient(145deg, rgba(0,212,255,0.05), rgba(0,0,0,0)); border-color: rgba(0,212,255,0.2); }
         .w-edu { grid-column: span 2; }
         .w-skills { grid-column: span 2; }
         .w-projects { grid-column: span 4; }
 
-        /* Typography & Elements */
         h2 { font-family: 'Space Grotesk'; font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
         h2 i { color: var(--secondary); }
         
         .avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; margin-bottom: 20px; box-shadow: 0 0 30px rgba(112,0,255,0.3); }
         .role-badge { background: rgba(112,0,255,0.2); color: #d8b4fe; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; display: inline-block; }
         
-        /* Patent Specific */
         .patent-number { font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin: 10px 0; text-shadow: 0 0 20px rgba(0,212,255,0.4); }
         .patent-status { display: inline-flex; align-items: center; gap: 5px; background: rgba(0,255,136,0.1); color: #00ff88; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; margin-top: 10px; }
         .inventor-list { font-size: 0.8rem; color: var(--muted); margin-top: 10px; font-style: italic; }
+        .btn-pdf { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; padding: 8px 20px; background: rgba(0,212,255,0.1); border: 1px solid var(--secondary); border-radius: 20px; color: var(--secondary); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        .btn-pdf:hover { background: var(--secondary); color: var(--bg); }
 
-        /* Education Cards */
         .edu-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 10px; border-left: 3px solid var(--accent); }
         .edu-degree { font-weight: 600; font-size: 1rem; }
         .edu-school { color: var(--muted); font-size: 0.85rem; }
         .edu-score { color: var(--secondary); font-weight: 700; font-size: 0.9rem; margin-top: 5px; display: block;}
 
-        /* Skills Tags */
         .tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .tag { background: rgba(255,255,255,0.05); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
         .tag:hover { background: var(--primary); border-color: var(--primary); }
 
-        /* Project Folders */
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .folder-card { 
-            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); 
-            border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.3s; text-decoration: none; color: inherit; display: block;
-        }
+        .folder-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.3s; text-decoration: none; color: inherit; display: block; }
         .folder-card:hover { background: rgba(255,255,255,0.06); border-color: var(--accent); }
         .folder-icon { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
         
-        /* Responsive */
+        .btn-resume { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding: 10px 25px; background: var(--accent); border-radius: 25px; color: white; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn-resume:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255,0,85,0.4); }
+
         @media (max-width: 1024px) {
             .bento-grid { grid-template-columns: repeat(2, 1fr); }
             .w-profile, .w-patent, .w-edu, .w-skills, .w-projects { grid-column: span 2; }
@@ -137,44 +100,33 @@
     </style>
 </head>
 <body>
-
-    <!-- Ambient Background -->
     <div class="ambient-light"></div>
-
-    <!-- INTRO SCREEN -->
     <div id="intro-screen">
         <h1 class="intro-title">RUPALI GANESH</h1>
         <p class="intro-sub">AI DEVELOPER • INVENTOR • RESEARCHER</p>
         <button class="enter-btn" onclick="enterSite()">ENTER PORTFOLIO</button>
     </div>
 
-    <!-- MAIN CONTENT (All content is EMPTY here - filled by JS) -->
     <div class="main-wrapper" id="main-content">
         <div class="bento-grid">
-            
             <div class="widget w-profile" id="profile-widget"></div>
             <div class="widget w-patent" id="patent-widget"></div>
             <div class="widget w-edu" id="edu-widget"></div>
             <div class="widget w-skills" id="skills-widget"></div>
             <div class="widget w-projects" id="projects-widget"></div>
-
         </div>
     </div>
 
-    <!-- LOAD DATA FIRST, THEN RENDER -->
     <script src="data.js"></script>
     <script>
-        // Intro Animation
         function enterSite() {
             document.getElementById('intro-screen').classList.add('hidden');
             document.getElementById('main-content').classList.add('visible');
         }
 
-        // Wait for DOM and data.js to load
         window.addEventListener('DOMContentLoaded', () => {
             const d = PORTFOLIO_DATA;
 
-            // 1. Render Profile
             document.getElementById('profile-widget').innerHTML = `
                 <img src="${d.profile.avatar}" class="avatar" alt="Profile">
                 <span class="role-badge">${d.profile.role}</span>
@@ -183,9 +135,9 @@
                 <div class="tags" style="margin-top:25px; justify-content:center;">
                     ${d.profile.socials.map(s => `<a href="${s.link}" target="_blank" class="tag"><i class="${s.icon}"></i> ${s.label}</a>`).join('')}
                 </div>
+                <a href="${d.resumeLink}" download class="btn-resume"><i class="fas fa-download"></i> Download Resume</a>
             `;
 
-            // 2. Render Patent
             document.getElementById('patent-widget').innerHTML = `
                 <h2><i class="fas fa-file-contract"></i> Granted Patent</h2>
                 <div style="text-align:center; padding:10px 0;">
@@ -195,10 +147,10 @@
                     <div class="patent-status"><i class="fas fa-check-circle"></i> ${d.patent.status} • ${d.patent.date}</div>
                     <div class="inventor-list">Inventors: ${d.patent.inventors.join(", ")}</div>
                     <div class="inventor-list">${d.patent.institution}</div>
+                    <a href="${d.patent.pdfLink}" target="_blank" class="btn-pdf"><i class="fas fa-file-pdf"></i> View Full Patent Document</a>
                 </div>
             `;
 
-            // 3. Render Education
             document.getElementById('edu-widget').innerHTML = `
                 <h2><i class="fas fa-graduation-cap"></i> Education</h2>
                 ${d.education.map(e => `
@@ -210,7 +162,6 @@
                 `).join('')}
             `;
 
-            // 4. Render Skills
             document.getElementById('skills-widget').innerHTML = `
                 <h2><i class="fas fa-microchip"></i> Technical Arsenal</h2>
                 <div class="tags">
@@ -218,7 +169,6 @@
                 </div>
             `;
 
-            // 5. Render Projects
             document.getElementById('projects-widget').innerHTML = `
                 <h2><i class="fas fa-layer-group"></i> Project Archives</h2>
                 <div class="project-grid">
