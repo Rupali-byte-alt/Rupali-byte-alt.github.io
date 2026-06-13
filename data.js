@@ -1,8 +1,3 @@
-// ==========================================
-//  PORTFOLIO DATA CONFIGURATION
-// Edit ONLY this file to update your website!
-// ==========================================
-
 const PORTFOLIO_DATA = {
     // 1. PERSONAL PROFILE
     profile: {
@@ -11,13 +6,13 @@ const PORTFOLIO_DATA = {
         bio: "Inventor of Fog-Assisted Explainable AI for Plant Disease Detection. Specializing in YOLOv8, Edge Computing, and Full-Stack Development.",
         avatar: "https://ui-avatars.com/api/?name=Rupali+Ganesh&background=7000ff&color=fff&size=256", 
         socials: [
-            { icon: "fab fa-linkedin-in", link: "https://linkedin.com/in/your-profile", label: "LinkedIn" },
+            { icon: "fab fa-linkedin-in", link: "https://linkedin.com/in/rupali-ganesh-940a9b29", label: "LinkedIn" },
             { icon: "fab fa-github", link: "https://github.com/Rupali-byte-alt", label: "GitHub" },
-            { icon: "fas fa-envelope", link: "mailto:your@email.com", label: "Email" }
+            { icon: "fas fa-envelope", link: "mailto:rupali171206@gmail.com", label: "Email" }
         ]
     },
 
-    // 2. PATENT DETAILS (From your PDF)
+    // 2. PATENT DETAILS
     patent: {
         number: "IN202641053225 A1",
         title: "Fog Assisted Explainable AI for Plant Disease Detection",
@@ -25,10 +20,11 @@ const PORTFOLIO_DATA = {
         status: "Published", 
         date: "May 2026",
         inventors: ["G. Rupali", "P. Lakshanya", "Athira Anish", "Dr. D. Deva Hema", "Dr. S. Visnu Dharsini", "Dr. T. Tamilselvi"],
-        institution: "SRM Institute of Science and Technology, Ramapuram Campus"
+        institution: "SRM Institute of Science and Technology, Ramapuram Campus",
+        pdfLink: "./Patent_Fog_Assisted_Explainable_AI.pdf" // Link to uploaded PDF
     },
 
-    // 3. EDUCATION & COURSES
+    // 3. EDUCATION
     education: [
         {
             degree: "B.Tech Computer Science Engineering",
@@ -44,7 +40,7 @@ const PORTFOLIO_DATA = {
         }
     ],
 
-    // 4. PROJECTS (Add new ones here anytime!)
+    // 4. PROJECTS
     projects: [
         {
             title: "Krishilens Server",
@@ -73,5 +69,8 @@ const PORTFOLIO_DATA = {
     ],
 
     // 5. SKILLS
-    skills: ["YOLOv8", "Grad-CAM", "Fog Computing", "Flutter", "FastAPI", "TensorFlow Lite", "MySQL", "Docker", "Git"]
+    skills: ["YOLOv8", "Grad-CAM", "Fog Computing", "Flutter", "FastAPI", "TensorFlow Lite", "MySQL", "Docker", "Git"],
+
+    // 6. RESUME DOWNLOAD LINK
+    resumeLink: "./Resume.pdf"
 };
