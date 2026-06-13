@@ -8,37 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg: #030014; --card-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --primary: #7000ff; --secondary: #00d4ff; --accent: #ff0055;
-            --text: #ffffff; --muted: #a1a1aa;
-        }
+        :root { --bg: #030014; --card-bg: rgba(255,255,255,0.03); --glass-border: rgba(255,255,255,0.08); --primary: #7000ff; --secondary: #00d4ff; --accent: #ff0055; --text: #fff; --muted: #a1a1aa; }
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
         
-        .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 40%),
-                        radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.15), transparent 40%);
-            animation: pulseLight 10s infinite alternate; }
+        .ambient-light { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 15% 50%, rgba(112,0,255,0.15), transparent 40%), radial-gradient(circle at 85% 30%, rgba(0,212,255,0.15), transparent 40%); animation: pulseLight 10s infinite alternate; }
         @keyframes pulseLight { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
 
-        #intro-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 9999; background: var(--bg); transition: opacity 0.8s ease, visibility 0.8s; }
+        #intro-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; background: var(--bg); transition: opacity 0.8s ease, visibility 0.8s; }
         #intro-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-        
-        .intro-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800; text-align: center; line-height: 1.1;
-            background: linear-gradient(to right, #fff, var(--secondary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 0.5s; }
-        .intro-sub { font-size: 1.2rem; color: var(--muted); margin-top: 20px; letter-spacing: 2px;
-            opacity: 0; animation: fadeUp 1s forwards 1s; }
-        .enter-btn { margin-top: 40px; padding: 15px 40px; border: 1px solid var(--glass-border);
-            background: rgba(255,255,255,0.05); color: white; border-radius: 50px;
-            cursor: pointer; font-family: 'Space Grotesk'; font-size: 1rem; letter-spacing: 1px;
-            transition: 0.3s; opacity: 0; animation: fadeUp 1s forwards 1.5s; }
+        .intro-title { font-family: 'Space Grotesk'; font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; text-align: center; background: linear-gradient(to right, #fff, var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0; transform: translateY(30px); animation: fadeUp 1s forwards 0.5s; }
+        .intro-sub { font-size: 1.2rem; color: var(--muted); margin-top: 20px; letter-spacing: 2px; opacity: 0; animation: fadeUp 1s forwards 1s; }
+        .enter-btn { margin-top: 40px; padding: 15px 40px; border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05); color: white; border-radius: 50px; cursor: pointer; font-family: 'Space Grotesk'; font-size: 1rem; transition: 0.3s; opacity: 0; animation: fadeUp 1s forwards 1.5s; }
         .enter-btn:hover { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 30px rgba(112,0,255,0.5); }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
@@ -46,10 +27,7 @@
         .main-wrapper.visible { opacity: 1; }
         .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
-        .widget { background: var(--card-bg); backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border); border-radius: 24px;
-            padding: 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden; }
+        .widget { background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 30px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
         .widget:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         
         .w-profile { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(145deg, rgba(112,0,255,0.1), rgba(0,0,0,0)); }
@@ -67,8 +45,13 @@
         .patent-number { font-family: 'Space Grotesk'; font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin: 10px 0; text-shadow: 0 0 20px rgba(0,212,255,0.4); }
         .patent-status { display: inline-flex; align-items: center; gap: 5px; background: rgba(0,255,136,0.1); color: #00ff88; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; margin-top: 10px; }
         .inventor-list { font-size: 0.8rem; color: var(--muted); margin-top: 10px; font-style: italic; }
-        .btn-pdf { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; padding: 8px 20px; background: rgba(0,212,255,0.1); border: 1px solid var(--secondary); border-radius: 20px; color: var(--secondary); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        
+        /* ✅ DOWNLOAD BUTTON STYLES */
+        .btn-pdf, .btn-resume { display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: 0.3s; cursor: pointer; border: none; font-family: inherit; }
+        .btn-pdf { background: rgba(0,212,255,0.1); border: 1px solid var(--secondary); color: var(--secondary); font-size: 0.85rem; }
         .btn-pdf:hover { background: var(--secondary); color: var(--bg); }
+        .btn-resume { background: var(--accent); color: white; margin-top: 20px; }
+        .btn-resume:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255,0,85,0.4); }
 
         .edu-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 10px; border-left: 3px solid var(--accent); }
         .edu-degree { font-weight: 600; font-size: 1rem; }
@@ -80,23 +63,12 @@
         .tag:hover { background: var(--primary); border-color: var(--primary); }
 
         .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .folder-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); 
-            border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.3s; text-decoration: none; color: inherit; display: block; }
+        .folder-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 25px; cursor: pointer; transition: 0.3s; text-decoration: none; color: inherit; display: block; }
         .folder-card:hover { background: rgba(255,255,255,0.06); border-color: var(--accent); }
         .folder-icon { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
         
-        .btn-resume { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding: 10px 25px; background: var(--accent); border-radius: 25px; color: white; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .btn-resume:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255,0,85,0.4); }
-
-        @media (max-width: 1024px) {
-            .bento-grid { grid-template-columns: repeat(2, 1fr); }
-            .w-profile, .w-patent, .w-edu, .w-skills, .w-projects { grid-column: span 2; }
-        }
-        @media (max-width: 768px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .w-profile, .w-patent, .w-edu, .w-skills, .w-projects { grid-column: span 1; }
-            .intro-title { font-size: 3rem; }
-        }
+        @media (max-width: 1024px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } .w-profile, .w-patent, .w-edu, .w-skills, .w-projects { grid-column: span 2; } }
+        @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } .w-profile, .w-patent, .w-edu, .w-skills, .w-projects { grid-column: span 1; } .intro-title { font-size: 3rem; } }
     </style>
 </head>
 <body>
@@ -124,6 +96,26 @@
             document.getElementById('main-content').classList.add('visible');
         }
 
+        // ✅ FORCE DOWNLOAD HELPER FUNCTION
+        function forceDownload(url, filename) {
+            fetch(url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(blobUrl);
+                })
+                .catch(err => {
+                    console.error("Download failed, opening in new tab:", err);
+                    window.open(url, '_blank');
+                });
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             const d = PORTFOLIO_DATA;
 
@@ -135,7 +127,9 @@
                 <div class="tags" style="margin-top:25px; justify-content:center;">
                     ${d.profile.socials.map(s => `<a href="${s.link}" target="_blank" class="tag"><i class="${s.icon}"></i> ${s.label}</a>`).join('')}
                 </div>
-                <a href="${d.resumeLink}" download class="btn-resume"><i class="fas fa-download"></i> Download Resume</a>
+                <button onclick="forceDownload('${d.resumeLink}', 'Rupali_Ganesh_Resume.pdf')" class="btn-resume">
+                    <i class="fas fa-download"></i> Download Resume
+                </button>
             `;
 
             document.getElementById('patent-widget').innerHTML = `
@@ -147,7 +141,9 @@
                     <div class="patent-status"><i class="fas fa-check-circle"></i> ${d.patent.status} • ${d.patent.date}</div>
                     <div class="inventor-list">Inventors: ${d.patent.inventors.join(", ")}</div>
                     <div class="inventor-list">${d.patent.institution}</div>
-                    <a href="${d.patent.pdfLink}" target="_blank" class="btn-pdf"><i class="fas fa-file-pdf"></i> View Full Patent Document</a>
+                    <button onclick="forceDownload('${d.patent.pdfLink}', 'Patent_IN202641053225_A1.pdf')" class="btn-pdf">
+                        <i class="fas fa-file-pdf"></i> View Full Patent Document
+                    </button>
                 </div>
             `;
 
@@ -164,9 +160,7 @@
 
             document.getElementById('skills-widget').innerHTML = `
                 <h2><i class="fas fa-microchip"></i> Technical Arsenal</h2>
-                <div class="tags">
-                    ${d.skills.map(s => `<span class="tag">${s}</span>`).join('')}
-                </div>
+                <div class="tags">${d.skills.map(s => `<span class="tag">${s}</span>`).join('')}</div>
             `;
 
             document.getElementById('projects-widget').innerHTML = `
