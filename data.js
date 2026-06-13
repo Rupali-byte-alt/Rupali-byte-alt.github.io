@@ -13,12 +13,12 @@ const PORTFOLIO_DATA = {
     patent: {
         number: "IN202641053225 A1",
         title: "Fog Assisted Explainable AI for Plant Disease Detection",
-        abstract: "A distributed three-tier architecture (Mobile-Edge, Fog, Cloud) integrating YOLOv8 and Grad-CAM. Ensures efficiency, reliability, and low latency for farmers in rural environments by offloading explainability tasks to the fog layer.",
+        abstract: "A distributed three-tier architecture (Mobile-Edge, Fog, Cloud) integrating YOLOv8 and Grad-CAM. Ensures efficiency, reliability, and low latency for farmers in rural environments by offloading explainability tasks to the fog layer while reducing mobile battery consumption.",
         status: "Published", 
         date: "15-05-2026",
-        applicants: ["SRM Institute of Science and Technology", "Easwari Engineering College"],
+        applicants: ["SRM Institute of Science and Technology, Ramapuram Campus", "Easwari Engineering College"],
         inventors: ["G. Rupali", "P. Lakshanya", "Athira Anish", "Dr. D. Deva Hema", "Dr. S. Visnu Dharsini", "Dr. T. Tamilselvi"],
-        pdfLink: "/Patent_Fog_Assisted_Explainable_AI.pdf" 
+        pdfLink: "/Patent_Fog_Assisted_Explainable_AI.pdf" // MUST MATCH EXACT FILENAME
     },
 
     education: [
@@ -28,7 +28,6 @@ const PORTFOLIO_DATA = {
 
     skills: ["Explainable AI (XAI)", "YOLOv8", "Grad-CAM", "Fog Computing", "Python", "SQL", "Android Development", "LLM Integration"],
 
-    // ✅ FIXED: Added Krishlens Website back to the list
     projects: [
         { 
             title: "Krishilens Server", 
@@ -56,5 +55,11 @@ const PORTFOLIO_DATA = {
         }
     ],
 
-    certifications: ["Cybersecurity Analyst Job Simulation", "Learn Python Programming", "A1 Certificate in German", "AI Impact Gen-AI Hackathon", "Smart India Hackathon (Internal)"]
+    certifications: [
+        "Cybersecurity Analyst Job Simulation", 
+        "Learn Python Programming", 
+        "A1 Certificate in German", 
+        "AI Impact Gen-AI Hackathon Participation", 
+        "Smart India Hackathon Participation (Internal)"
+    ]
 };
