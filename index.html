@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rupali Ganesh | AI Innovator</title>
+    <title>G. Rupali | AI Specialist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     
@@ -35,6 +35,7 @@
         .w-edu { grid-column: span 2; }
         .w-skills { grid-column: span 2; }
         .w-projects { grid-column: span 4; }
+        .w-certs { grid-column: span 2; }
 
         h2 { font-family: 'Space Grotesk'; font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
         h2 i { color: var(--secondary); }
@@ -56,8 +57,7 @@
         .edu-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; margin-bottom: 10px; border-left: 3px solid var(--accent); }
         .edu-degree { font-weight: 600; font-size: 1rem; }
         .edu-school { color: var(--muted); font-size: 0.85rem; }
-        .edu-score { color: var(--secondary); font-weight: 700; font-size: 0.9rem; margin-top: 5px; display: block;}
-
+        
         .tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .tag { background: rgba(255,255,255,0.05); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
         .tag:hover { background: var(--primary); border-color: var(--primary); }
@@ -67,15 +67,18 @@
         .folder-card:hover { background: rgba(255,255,255,0.06); border-color: var(--accent); }
         .folder-icon { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
         
-        @media (max-width: 1024px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } .w-profile, .w-patent, .w-edu, .w-skills, .w-projects { grid-column: span 2; } }
-        @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } .w-profile, .w-patent, .w-edu, .w-skills, .w-projects { grid-column: span 1; } .intro-title { font-size: 3rem; } }
+        .cert-item { background: rgba(255,255,255,0.03); padding: 10px 15px; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+        .cert-item i { color: var(--secondary); }
+
+        @media (max-width: 1024px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } .w-profile, .w-patent, .w-edu, .w-skills, .w-projects, .w-certs { grid-column: span 2; } }
+        @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr; } .w-profile, .w-patent, .w-edu, .w-skills, .w-projects, .w-certs { grid-column: span 1; } .intro-title { font-size: 3rem; } }
     </style>
 </head>
 <body>
     <div class="ambient-light"></div>
     <div id="intro-screen">
-        <h1 class="intro-title">RUPALI GANESH</h1>
-        <p class="intro-sub">AI DEVELOPER • INVENTOR • RESEARCHER</p>
+        <h1 class="intro-title">G. RUPALI</h1>
+        <p class="intro-sub">AI SPECIALIST • RESEARCHER • INVENTOR</p>
         <button class="enter-btn" onclick="enterSite()">ENTER PORTFOLIO</button>
     </div>
 
@@ -86,6 +89,7 @@
             <div class="widget w-edu" id="edu-widget"></div>
             <div class="widget w-skills" id="skills-widget"></div>
             <div class="widget w-projects" id="projects-widget"></div>
+            <div class="widget w-certs" id="certs-widget"></div>
         </div>
     </div>
 
@@ -96,73 +100,90 @@
             document.getElementById('main-content').classList.add('visible');
         }
 
-        // ✅ FORCE DOWNLOAD HELPER FUNCTION
-        function forceDownload(url, filename) {
-            fetch(url)
-                .then(response => response.blob())
-                .then(blob => {
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = blobUrl;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(blobUrl);
-                })
-                .catch(err => {
-                    console.error("Download failed, opening in new tab:", err);
-                    window.open(url, '_blank');
-                });
+        // ✅ FORCE DOWNLOAD FUNCTION (Bypasses GitHub Pages restrictions)
+        async function forceDownload(url, filename) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                
+                // Cleanup
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(blobUrl);
+            } catch (error) {
+                console.error("Download failed, opening in new tab:", error);
+                // Fallback: Open in new tab if download fails
+                window.open(url, '_blank');
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             const d = PORTFOLIO_DATA;
 
+            // ✅ PROFILE WIDGET WITH WORKING CONTACT & RESUME
             document.getElementById('profile-widget').innerHTML = `
                 <img src="${d.profile.avatar}" class="avatar" alt="Profile">
                 <span class="role-badge">${d.profile.role}</span>
                 <h1 style="font-family:'Space Grotesk'; font-size:2.5rem; margin-bottom:10px;">${d.profile.name}</h1>
                 <p style="color:var(--muted); max-width:400px; line-height:1.6;">${d.profile.bio}</p>
-                <div class="tags" style="margin-top:25px; justify-content:center;">
+                
+                <div style="margin-top:20px; font-size:0.9rem; color:var(--muted);">
+                    <div><i class="fas fa-phone"></i> ${d.profile.contact.phone}</div>
+                    <div><i class="fas fa-envelope"></i> ${d.profile.contact.email}</div>
+                    <div><i class="fas fa-map-marker-alt"></i> ${d.profile.contact.location}</div>
+                </div>
+
+                <div class="tags" style="margin-top:20px; justify-content:center;">
                     ${d.profile.socials.map(s => `<a href="${s.link}" target="_blank" class="tag"><i class="${s.icon}"></i> ${s.label}</a>`).join('')}
                 </div>
-                <button onclick="forceDownload('${d.resumeLink}', 'Rupali_Ganesh_Resume.pdf')" class="btn-resume">
+                
+                <button onclick="forceDownload('${d.resumeLink}', 'G_Rupali_Resume.pdf')" class="btn-resume">
                     <i class="fas fa-download"></i> Download Resume
                 </button>
             `;
 
+            // ✅ PATENT WIDGET WITH WORKING DOWNLOAD
             document.getElementById('patent-widget').innerHTML = `
-                <h2><i class="fas fa-file-contract"></i> Granted Patent</h2>
+                <h2><i class="fas fa-file-contract"></i> Indian Patent Application</h2>
                 <div style="text-align:center; padding:10px 0;">
                     <div class="patent-number">${d.patent.number}</div>
                     <h3 style="font-size:1.2rem; margin-bottom:10px;">${d.patent.title}</h3>
-                    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:15px; line-height:1.5;">${d.patent.desc}</p>
+                    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:15px; line-height:1.5;">${d.patent.abstract}</p>
                     <div class="patent-status"><i class="fas fa-check-circle"></i> ${d.patent.status} • ${d.patent.date}</div>
+                    <div class="inventor-list">Applicants: ${d.patent.applicants.join(", ")}</div>
                     <div class="inventor-list">Inventors: ${d.patent.inventors.join(", ")}</div>
-                    <div class="inventor-list">${d.patent.institution}</div>
                     <button onclick="forceDownload('${d.patent.pdfLink}', 'Patent_IN202641053225_A1.pdf')" class="btn-pdf">
                         <i class="fas fa-file-pdf"></i> View Full Patent Document
                     </button>
                 </div>
             `;
 
+            // Education Widget
             document.getElementById('edu-widget').innerHTML = `
                 <h2><i class="fas fa-graduation-cap"></i> Education</h2>
                 ${d.education.map(e => `
                     <div class="edu-card">
                         <div class="edu-degree">${e.degree}</div>
                         <div class="edu-school">${e.school} • ${e.year}</div>
-                        <span class="edu-score">${e.score}</span>
+                        <div style="font-size:0.8rem; color:var(--muted);">${e.location}</div>
                     </div>
                 `).join('')}
             `;
 
+            // Skills Widget
             document.getElementById('skills-widget').innerHTML = `
-                <h2><i class="fas fa-microchip"></i> Technical Arsenal</h2>
+                <h2><i class="fas fa-microchip"></i> Technical Skills</h2>
                 <div class="tags">${d.skills.map(s => `<span class="tag">${s}</span>`).join('')}</div>
             `;
 
+            // Projects Widget
             document.getElementById('projects-widget').innerHTML = `
                 <h2><i class="fas fa-layer-group"></i> Project Archives</h2>
                 <div class="project-grid">
@@ -175,6 +196,14 @@
                         </a>
                     `).join('')}
                 </div>
+            `;
+
+            // Certifications Widget
+            document.getElementById('certs-widget').innerHTML = `
+                <h2><i class="fas fa-certificate"></i> Certifications</h2>
+                ${d.certifications.map(c => `
+                    <div class="cert-item"><i class="fas fa-check"></i> ${c}</div>
+                `).join('')}
             `;
         });
     </script>
