@@ -1,5 +1,4 @@
 const PORTFOLIO_DATA = {
-    // 1. PERSONAL PROFILE
     profile: {
         name: "Rupali Ganesh",
         role: "AI Developer & Researcher | B.Tech CSE",
@@ -12,7 +11,6 @@ const PORTFOLIO_DATA = {
         ]
     },
 
-    // 2. PATENT DETAILS
     patent: {
         number: "IN202641053225 A1",
         title: "Fog Assisted Explainable AI for Plant Disease Detection",
@@ -21,56 +19,24 @@ const PORTFOLIO_DATA = {
         date: "May 2026",
         inventors: ["G. Rupali", "P. Lakshanya", "Athira Anish", "Dr. D. Deva Hema", "Dr. S. Visnu Dharsini", "Dr. T. Tamilselvi"],
         institution: "SRM Institute of Science and Technology, Ramapuram Campus",
-        pdfLink: "./Patent_Fog_Assisted_Explainable_AI.pdf" // Link to uploaded PDF
+        // ✅ FIXED: Root-relative path for GitHub Pages reliability
+        pdfLink: "/Patent_Fog_Assisted_Explainable_AI.pdf" 
     },
 
-    // 3. EDUCATION
     education: [
-        {
-            degree: "B.Tech Computer Science Engineering",
-            school: "SRM Institute of Science and Technology",
-            score: "9.36 CGPA",
-            year: "2022 - 2026"
-        },
-        {
-            degree: "BS in Data Science and Applications",
-            school: "IIT Madras",
-            score: "Ongoing",
-            year: "2024 - Present"
-        }
+        { degree: "B.Tech Computer Science Engineering", school: "SRM Institute of Science and Technology", score: "9.36 CGPA", year: "2022 - 2026" },
+        { degree: "BS in Data Science and Applications", school: "IIT Madras", score: "Ongoing", year: "2024 - Present" }
     ],
 
-    // 4. PROJECTS
     projects: [
-        {
-            title: "Krishilens Server",
-            desc: "Backend API server handling real-time YOLOv8 inference requests for the Krishilens mobile app.",
-            tech: ["Python", "FastAPI", "YOLOv8", "Docker"],
-            link: "https://github.com/Rupali-byte-alt/krishilens-server"
-        },
-        {
-            title: "Krishlens Website",
-            desc: "Official web portal for the Krishilens agricultural AI platform featuring documentation and demos.",
-            tech: ["HTML5", "CSS3", "JavaScript"],
-            link: "https://github.com/Rupali-byte-alt/Krishlens-website"
-        },
-        {
-            title: "Study Planner DBMS",
-            desc: "Full-stack academic management system with risk analysis dashboard and relational database design.",
-            tech: ["Flask", "MySQL", "Streamlit", "SQL"],
-            link: "https://github.com/Rupali-byte-alt/DBMS"
-        },
-        {
-            title: "Study Planner App",
-            desc: "Android application for intelligent study scheduling and academic progress tracking.",
-            tech: ["Flutter", "Dart", "Firebase"],
-            link: "https://github.com/Rupali-byte-alt/study-planner"
-        }
+        { title: "Krishilens Server", desc: "Backend API server handling real-time YOLOv8 inference requests.", tech: ["Python", "FastAPI", "YOLOv8"], link: "https://github.com/Rupali-byte-alt/krishilens-server" },
+        { title: "Krishlens Website", desc: "Official web portal for the Krishilens agricultural AI platform.", tech: ["HTML5", "CSS3", "JS"], link: "https://github.com/Rupali-byte-alt/Krishlens-website" },
+        { title: "Study Planner DBMS", desc: "Full-stack academic management system with risk analysis dashboard.", tech: ["Flask", "MySQL", "Streamlit"], link: "https://github.com/Rupali-byte-alt/DBMS" },
+        { title: "Study Planner App", desc: "Android application for intelligent study scheduling.", tech: ["Flutter", "Dart"], link: "https://github.com/Rupali-byte-alt/study-planner" }
     ],
 
-    // 5. SKILLS
     skills: ["YOLOv8", "Grad-CAM", "Fog Computing", "Flutter", "FastAPI", "TensorFlow Lite", "MySQL", "Docker", "Git"],
-
-    // 6. RESUME DOWNLOAD LINK
-    resumeLink: "./Resume.pdf"
+    
+    // ✅ FIXED: Root-relative path for Resume
+    resumeLink: "/Resume.pdf" 
 };
