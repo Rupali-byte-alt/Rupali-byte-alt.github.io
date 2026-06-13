@@ -5,6 +5,7 @@ const PORTFOLIO_DATA = {
         bio: "Dynamic AI specialist excelling in Explainable AI (XAI) and classification models. Inventor of a Fog-assisted framework for plant disease detection using YOLOv8 and Grad-CAM. Passionate about ethical AI and rural tech solutions.",
         avatar: "https://ui-avatars.com/api/?name=G+Rupali&background=7000ff&color=fff&size=256", 
         contact: {
+            phone: "+91 8922857663",
             email: "rupali171206@gmail.com",
             location: "Chennai, 600087"
         },
