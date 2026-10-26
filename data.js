@@ -31,7 +31,12 @@ const PORTFOLIO_DATA = {
         { title: "Study Planner DBMS", desc: "Full-stack academic management system with risk analysis dashboard.", tech: ["Flask", "MySQL", "Streamlit"], link: "https://github.com/Rupali-byte-alt/DBMS" },
         { title: "Study Planner App", desc: "Android application for intelligent study scheduling.", tech: ["Flutter", "Dart"], link: "https://github.com/Rupali-byte-alt/study-planner" },
         { title: "Loco Prediction", desc: "Predictive model for locomotive performance and maintenance forecasting.", tech: ["Python", "Machine Learning"], link: "https://github.com/Rupali-byte-alt/loco-prediction.git" },
-        { title: "HackerRank Hackathon", desc: "Solutions and submission built for the HackerRank Orchestrate hackathon.", tech: ["Python"], link: "https://github.com/Rupali-byte-alt/hacker-rank-hackathon.git" }
+        { title: "HackerRank Hackathon", desc: "Solutions and submission built for the HackerRank Orchestrate hackathon.", tech: ["Python"], link: "https://github.com/Rupali-byte-alt/hacker-rank-hackathon.git" },
+        { title: "SpendWise", desc: "Expense tracking and personal finance management app.", tech: ["Python"], link: "https://github.com/Rupali-byte-alt/spendwise" },
+        { title: "3D Model", desc: "3D modelling and visualization project.", tech: ["3D Modelling"], link: "https://github.com/Rupali-byte-alt/3D-model" },
+        { title: "Web Scraping", desc: "Scripts for extracting and processing data from websites.", tech: ["Python", "Web Scraping"], link: "https://github.com/Rupali-byte-alt/web-scraping" },
+        { title: "Peer-to-Peer Chat", desc: "Real-time peer-to-peer messaging application.", tech: ["Networking", "Sockets"], link: "https://github.com/Rupali-byte-alt/peer-to-peer-chat-" },
+        { title: "ML", desc: "Machine learning experiments and models.", tech: ["Python", "Machine Learning"], link: "https://github.com/Rupali-byte-alt/ml" }
     ],
     internships: [
         {
